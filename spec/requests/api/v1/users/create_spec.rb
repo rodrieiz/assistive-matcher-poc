@@ -11,6 +11,9 @@ describe 'POST api/v1/users/', type: :request do
     let(:password_confirmation) { '12345678' }
     let(:first_name)            { 'Johnny' }
     let(:last_name)             { 'Perez' }
+    let(:document)              { '552-56-3593' }
+    let(:birthday)              { '1986-03-28' }
+    let(:user_type)             { 'Professional' }
 
     let(:params) do
       {
@@ -20,7 +23,10 @@ describe 'POST api/v1/users/', type: :request do
           password:,
           password_confirmation:,
           first_name:,
-          last_name:
+          last_name:,
+          document:,
+          birthday:,
+          user_type:
         }
       }
     end
@@ -47,6 +53,9 @@ describe 'POST api/v1/users/', type: :request do
       expect(json[:user][:provider]).to eq('email')
       expect(json[:user][:first_name]).to eq(user.first_name)
       expect(json[:user][:last_name]).to eq(user.last_name)
+      expect(json[:user][:document]).to eq(user.document)
+      expect(json[:user][:birthday]).to eq(user.birthday.to_s)
+      expect(json[:user][:user_type]).to eq(user.user_type)
     end
 
     context 'when the email is not correct' do
