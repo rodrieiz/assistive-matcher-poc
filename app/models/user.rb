@@ -21,6 +21,9 @@
 #  provider               :string           default("email"), not null
 #  uid                    :string           default(""), not null
 #  tokens                 :json
+#  user_type              :string           not null
+#  document               :string
+#  birthday               :date
 #
 # Indexes
 #
@@ -37,6 +40,9 @@ class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
 
   validates :uid, uniqueness: { scope: :provider }
+  validates :document, uniqueness: true
+
+  enum user_type: { professional: 'Professional', ordinary: 'Ordinary', consumer: 'Consumer' }
 
   before_validation :init_uid
 

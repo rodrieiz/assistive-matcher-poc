@@ -21,6 +21,9 @@
 #  provider               :string           default("email"), not null
 #  uid                    :string           default(""), not null
 #  tokens                 :json
+#  user_type              :string           not null
+#  document               :string
+#  birthday               :date
 #
 # Indexes
 #
@@ -37,5 +40,8 @@ FactoryBot.define do
     first_name { Faker::Name.unique.name }
     last_name  { Faker::Name.unique.last_name }
     uid        { Faker::Internet.uuid }
+    birthday   { Faker::Date.birthday }
+    user_type  { User.user_types.keys.sample }
+    document   { Faker::IDNumber.valid }
   end
 end
