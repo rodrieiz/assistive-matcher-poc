@@ -40,6 +40,8 @@ class User < ApplicationRecord
          :recoverable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
 
+  has_many :meetings, dependent: :destroy
+
   validates :uid, uniqueness: { scope: :provider }
   validates :document, uniqueness: true
 
