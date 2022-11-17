@@ -129,9 +129,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_16_173845) do
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
     t.json "tokens"
-    t.string "user_type", null: false
+    t.string "user_type", default: "Consumer", null: false
     t.string "document"
     t.date "birthday"
+    t.index ["document"], name: "index_users_on_document", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true

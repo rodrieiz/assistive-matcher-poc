@@ -21,12 +21,13 @@
 #  provider               :string           default("email"), not null
 #  uid                    :string           default(""), not null
 #  tokens                 :json
-#  user_type              :string           not null
+#  user_type              :string           default("consumer"), not null
 #  document               :string
 #  birthday               :date
 #
 # Indexes
 #
+#  index_users_on_document              (document) UNIQUE
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #  index_users_on_uid_and_provider      (uid,provider) UNIQUE
